@@ -26,7 +26,17 @@ public class Jeu {
 
         for (int i = 0; i < motAtrouve.size(); i++) lePendu.genererMasque(i, '*');
 
-        System.out.println("======= Paramètres de partie =======");
+        System.out.println("* * * * * * * * * Le Pendu * * * * * * * *");
+        System.out.println("" +
+                "               ===========" + "\n" +
+                "               |         |" + "\n" +
+                "               O         |" + "\n" +
+                "              /|\\        |"+ "\n" +
+                "              / \\        |"+ "\n"
+
+        );
+
+        System.out.println("========= Paramètres de partie ========");
         System.out.println("Voulez-vous un nombe d'essais spécifique (10 par défaut) ? y/n : ");
         char choix = scn.next().toLowerCase().charAt(0);
 
