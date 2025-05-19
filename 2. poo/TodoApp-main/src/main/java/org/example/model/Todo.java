@@ -1,5 +1,7 @@
 package org.example.model;
 
+import java.util.List;
+
 public class Todo {
 
     private int id;
@@ -44,6 +46,7 @@ public class Todo {
     public void setDone(boolean done) {
         this.done = done;
     }
+
 
     @Override
     public String toString() {

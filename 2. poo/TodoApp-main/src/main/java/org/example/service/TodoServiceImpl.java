@@ -5,19 +5,31 @@ import org.example.model.Todo;
 import java.util.List;
 
 public class TodoServiceImpl implements TodoService{
+
+    private static List<Todo> todoList;
+    private static int cpt = 1;
+
+    public static List<Todo> getTodoList() {
+        return todoList;
+    }
+
     @Override
     public List<Todo> getAll() {
-        return List.of();
+        return todoList;
     }
 
     @Override
     public Todo getById(int id) {
+        for(Todo todo : todoList){
+            if(todo.getId() == id) return todo;
+        }
         return null;
     }
 
     @Override
     public void add(String name, String description) {
-
+        Todo newTodo = new Todo(cpt++, name, description);
+        todoList.add(newTodo);
     }
 
     @Override
