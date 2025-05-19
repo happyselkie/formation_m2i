@@ -16,6 +16,6 @@ public class PriorityTodo extends Todo{
         if(done == false) checkbox = "[ ]";
         else checkbox = "[X]";
 
-        return checkbox + " (id:"+super.getId()+") [Prioritaire - "+priority.toUpperCase()+"]" + super.getName() + " : " + super.getDescription();
+        return checkbox + " (id:"+super.getId()+") [Prioritaire - "+priority.toUpperCase()+"] " + super.getName() + " : " + super.getDescription();
     }
 }
