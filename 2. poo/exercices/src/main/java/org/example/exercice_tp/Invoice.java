@@ -1,6 +1,7 @@
 package org.example.exercice_tp;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Invoice {
 
@@ -11,19 +12,17 @@ public class Invoice {
 
     Line[] quantity = new Line[lines];
 
-    public Invoice(int lines, long invoiceNum, Customer customer, LocalDate date, Line[] quantity) {
+    public Invoice(int lines, long invoiceNum, Customer customer, LocalDate date) {
         this.lines = lines;
         this.invoiceNum = invoiceNum;
         this.customer = customer;
         this.date = date;
-        this.quantity = quantity;
     }
 
-    public Invoice(long invoiceNum, Customer customer, LocalDate date, Line[] quantity) {
+    public Invoice(long invoiceNum, Customer customer, LocalDate date) {
         this.invoiceNum = invoiceNum;
         this.customer = customer;
         this.date = date;
-        this.quantity = quantity;
     }
 
     public int getLines() {
@@ -76,5 +75,13 @@ public class Invoice {
             sum += line.getTotal();
         }
         return sum;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice for "+ customer.getName() +" : \n" +
+               " * Invoice Num : " + invoiceNum + " \n" +
+               " * Date : " + date + " \n" +
+               " * Total : " + getTotal() + "€ \n";
     }
 }
