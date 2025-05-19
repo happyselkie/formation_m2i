@@ -9,7 +9,8 @@ public class Stylo extends ProductItem {
         this.color = color;
     }
 
-
-
+    public String getColor() {
+        return color;
+    }
 }
 

@@ -6,20 +6,27 @@ import java.util.Map;
 abstract class Products {
     protected String ref;
 
-    protected static Map<String, Products> allProducts = new HashMap<>();
+    public static Map<String, Products> allProducts = new HashMap<>();
 
-    protected Products(String ref) {
+    public Products(String ref) {
         this.ref = ref;
         allProducts.put(ref, this);
     }
 
-    protected abstract  Map<String, Products> getAllProducts();
+    public abstract  Map<String, Products> getAllProducts();
 
-    protected abstract String getRef();
+    public abstract String getRef();
 
-    protected abstract Products getProduct();
+    public abstract Products getProduct();
 
-    protected abstract double getPrice();
+    public abstract double getPrice();
 
-    protected abstract String getName();
+    public abstract String getName();
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "ref='" + ref + '\'' +
+                '}';
+    }
 }

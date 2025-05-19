@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class Bulk extends Products{
 
-    private String ref;
     private Products product;
     private int quantity;
     private double discountPercent;
@@ -19,6 +18,7 @@ public class Bulk extends Products{
     public Map<String, Products> getAllProducts() {
         return allProducts;
     }
+
 
     public int getQuantity() {
         return quantity;
@@ -47,17 +47,27 @@ public class Bulk extends Products{
     }
 
     @Override
-    protected String getName() {
-        return product.getName();
+    public String getName() {
+        return "Bulk of "+this.quantity + " " +product.getName();
     }
 
     @Override
-    protected String getRef() {
+    public String getRef() {
         return this.ref;
     }
 
     @Override
-    protected Products getProduct() {
+    public Products getProduct() {
         return this.product;
+    }
+
+    @Override
+    public String toString() {
+        return "Bulk{" +
+                "ref='" + ref + '\'' +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                ", discountPercent=" + discountPercent +
+                '}';
     }
 }

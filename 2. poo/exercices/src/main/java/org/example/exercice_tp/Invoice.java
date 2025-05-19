@@ -1,28 +1,30 @@
 package org.example.exercice_tp;
 
 import java.time.LocalDate;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Invoice {
 
-    int lines = 10;
-    long invoiceNum;
-    Customer customer;
-    LocalDate date;
+    private int lines = 10;
+    private long invoiceNum;
+    private Customer customer;
+    private LocalDate date;
 
-    Line[] quantity = new Line[lines];
+    private ArrayList<Line> quantity;
 
     public Invoice(int lines, long invoiceNum, Customer customer, LocalDate date) {
         this.lines = lines;
         this.invoiceNum = invoiceNum;
         this.customer = customer;
         this.date = date;
+        this.quantity = new ArrayList<>();
     }
 
     public Invoice(long invoiceNum, Customer customer, LocalDate date) {
         this.invoiceNum = invoiceNum;
         this.customer = customer;
         this.date = date;
+        this.quantity = new ArrayList<>();
     }
 
     public int getLines() {
@@ -57,16 +59,18 @@ public class Invoice {
         this.date = date;
     }
 
-    public Line[] getQuantity() {
+    public ArrayList<Line> getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Line[] quantity) {
+    public void setQuantity(ArrayList<Line> quantity) {
         this.quantity = quantity;
     }
 
     public Line addLine(String ref, int quantity){
-        return new Line(ref, quantity);
+        Line line = new Line(ref, quantity);
+        this.quantity.add(line);
+        return line;
     }
 
     public double getTotal(){
@@ -79,9 +83,16 @@ public class Invoice {
 
     @Override
     public String toString() {
+        String lines = "";
+        for(Line line : quantity) {
+            lines += " --- " + line.displayLine() + "\n";
+        }
+
         return "Invoice for "+ customer.getName() +" : \n" +
                " * Invoice Num : " + invoiceNum + " \n" +
                " * Date : " + date + " \n" +
-               " * Total : " + getTotal() + "€ \n";
+               " * Purchases : \n" +
+                lines + " \n" +
+                " * Total : " + getTotal() + "€";
     }
 }

@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class ProductItem extends Products{
 
-    private String ref;
     private String name;
     private double price;
 
@@ -22,12 +21,12 @@ public class ProductItem extends Products{
         return allProducts.get(ref);
     }
 
-    protected String getRef() {
+    public String getRef() {
         return this.ref;
     }
 
     @Override
-    protected Products getProduct() {
+    public Products getProduct() {
         return this;
     }
 
@@ -35,7 +34,7 @@ public class ProductItem extends Products{
         this.ref = ref;
     }
 
-    protected String getName() {
+    public String getName() {
         return name;
     }
 
@@ -43,7 +42,7 @@ public class ProductItem extends Products{
         this.name = name;
     }
 
-    protected double getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -51,4 +50,12 @@ public class ProductItem extends Products{
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "ProductItem{" +
+                "ref='" + this.ref + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

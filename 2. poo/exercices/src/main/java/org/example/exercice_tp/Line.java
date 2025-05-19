@@ -12,10 +12,8 @@ public class Line {
         this.total = article.getPrice() * quantity;
     }
 
-
-
     public String displayLine(){
-        return quantity + " - " + article.getRef() + " - " + article.getName() + " - " + article.getPrice() + " - " + total;
+        return "Quantity : " + quantity + " - " + "Ref : " + article.getRef() + " - " + "Name : " + article.getName() + " - " + "Price : " +article.getPrice() + "€ - " + " Total : " + total + "€";
     }
 
     public double getTotal() {

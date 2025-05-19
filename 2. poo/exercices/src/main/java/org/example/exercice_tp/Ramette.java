@@ -9,4 +9,7 @@ public class Ramette extends ProductItem {
         this.gram = gram;
     }
 
+    public double getGram() {
+        return gram;
+    }
 }

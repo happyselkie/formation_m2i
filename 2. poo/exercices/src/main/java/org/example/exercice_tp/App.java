@@ -17,12 +17,12 @@ public class App {
         Customer tata = new Customer("Tata");
 
         Invoice invoice1 = new Invoice(045665132, toto, LocalDate.now());
+
         invoice1.addLine(stylo2.getRef(), 4);
         invoice1.addLine(styloBulk.getRef(), 2);
         invoice1.addLine(rametteBulk.getRef(), 1);
 
-
-        System.out.println(invoice1);
+       System.out.println(invoice1);
     }
 
 }
