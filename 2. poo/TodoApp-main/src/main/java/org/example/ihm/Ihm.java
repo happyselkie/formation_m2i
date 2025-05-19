@@ -54,7 +54,7 @@ public class Ihm {
         if(isprior == 'y') {
             System.out.println("Quel est sa priorité ? haute/moyenne/basse");
             priority = scanner.nextLine();
-            if (priority.toUpperCase() != "basse" && priority.toUpperCase() != "moyenne" && priority.toUpperCase() != "haute") {
+            if (!priority.equalsIgnoreCase("basse") && !priority.equalsIgnoreCase("moyenne") && !priority.equalsIgnoreCase("haute")) {
                 System.out.println("Choix invalide.");
                 return;
             }
