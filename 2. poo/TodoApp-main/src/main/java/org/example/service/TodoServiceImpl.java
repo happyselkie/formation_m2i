@@ -15,6 +15,14 @@ public class TodoServiceImpl implements TodoService{
         return todoList;
     }
 
+    public List<Todo> getAllUndone() {
+        List<Todo> todoUndone = new ArrayList<>();
+        for(Todo todo : todoList){
+            if(todo.isDone() == false) todoUndone.add(todo);
+        }
+        return todoUndone;
+    }
+
     @Override
     public Todo getById(int id) {
         for(Todo todo : todoList){
