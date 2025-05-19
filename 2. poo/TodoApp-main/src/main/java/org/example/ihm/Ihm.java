@@ -22,7 +22,7 @@ public class Ihm {
             System.out.println("3. Modifier une tâche");
             System.out.println("4. Supprimer une tâche");
             System.out.println("5. Marquer tâche comme faite / non faite");
-            System.out.println("6. Quitter");
+            System.out.println("6. Afficher uniquement les tâches à faire");
             System.out.println("7. Quitter");
             System.out.print("Votre choix : ");
             String input = scanner.nextLine();
