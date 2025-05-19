@@ -51,8 +51,8 @@ public class Todo {
     public String toString() {
        String checkbox;
         if(done == false) checkbox = "[ ]";
-        else checkbox = "[ X ]";
+        else checkbox = "[X]";
 
-        return checkbox + " " + name + " : " + description;
+        return checkbox + " (id:"+id+")" + name + " : " + description;
     }
 }
