@@ -1,9 +1,11 @@
 package org.example.exercice_tp;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+
         Stylo stylo1 = new Stylo("42GH1", "Bic", 3.3, "bleu");
         Stylo stylo2 = new Stylo("42GH2", "Bic", 3.2, "noir");
 
@@ -16,7 +18,7 @@ public class App {
         Customer toto = new Customer("Toto");
         Customer tata = new Customer("Tata");
 
-        Invoice invoice1 = new Invoice(045665132, toto, LocalDate.now());
+        Invoice invoice1 = new Invoice( 045665132, toto, LocalDate.now());
 
         invoice1.addLine(stylo2.getRef(), 4);
         invoice1.addLine(styloBulk.getRef(), 2);
