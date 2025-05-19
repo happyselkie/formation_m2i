@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.PriorityTodo;
 import org.example.model.Todo;
 
 import java.util.ArrayList;
@@ -36,6 +37,16 @@ public class TodoServiceImpl implements TodoService{
         Todo newTodo = new Todo(cpt++, name, description);
         todoList.add(newTodo);
     }
+
+
+    public void add(String name, String description, String priority) {
+        Todo newTodo = new Todo(cpt++, name, description);
+        if (priority != "") {
+            newTodo = new PriorityTodo(cpt++, name, description, priority);
+        }
+        todoList.add(newTodo);
+    }
+
 
     @Override
     public void update(int id, String name, String description, boolean done) {

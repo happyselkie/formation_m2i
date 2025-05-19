@@ -44,11 +44,28 @@ public class Ihm {
     }
 
     private void createTodo() {
+        String priority = "";
+        System.out.println("Est-ce une tâche prioritaire ? y/n");
+        char isprior = scanner.nextLine().toLowerCase().charAt(0);
+        if(isprior != 'y' && isprior!= 'n') {
+            System.out.println("Choix invalide.");
+            return;
+        }
+        if(isprior == 'y') {
+            System.out.println("Quel est sa priorité ? haute/moyenne/basse");
+            priority = scanner.nextLine();
+            if (priority.toUpperCase() != "basse" && priority.toUpperCase() != "moyenne" && priority.toUpperCase() != "haute") {
+                System.out.println("Choix invalide.");
+                return;
+            }
+        }
+
         System.out.print("Nom : ");
         String name = scanner.nextLine();
         System.out.print("Description : ");
         String description = scanner.nextLine();
-        service.add(name, description);
+        System.out.print("Description : ");
+        service.add(name, description, priority);
         System.out.println("Tâche ajoutée !");
     }
 
