@@ -2,11 +2,12 @@ package org.example.service;
 
 import org.example.model.Todo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TodoServiceImpl implements TodoService{
 
-    private static List<Todo> todoList;
+    private static List<Todo> todoList = new ArrayList<>();
     private static int cpt = 1;
 
     public static List<Todo> getTodoList() {
