@@ -47,14 +47,12 @@ public class Todo {
         this.done = done;
     }
 
-
     @Override
     public String toString() {
-        return "Todo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", done=" + done +
-                '}';
+       String checkbox;
+        if(done == false) checkbox = "[ ]";
+        else checkbox = "[ X ]";
+
+        return checkbox + " " + name + " : " + description;
     }
 }
