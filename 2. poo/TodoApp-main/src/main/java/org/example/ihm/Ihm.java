@@ -23,6 +23,7 @@ public class Ihm {
             System.out.println("4. Supprimer une tâche");
             System.out.println("5. Marquer tâche comme faite / non faite");
             System.out.println("6. Quitter");
+            System.out.println("7. Quitter");
             System.out.print("Votre choix : ");
             String input = scanner.nextLine();
 
@@ -32,7 +33,8 @@ public class Ihm {
                 case "3" -> updateTodo();
                 case "4" -> deleteTodo();
                 case "5" -> toggleTodo();
-                case "6" -> {
+                case "6" -> displayOnlyUndone();
+                case "7" -> {
                     System.out.println("Au revoir !");
                     return;
                 }
@@ -82,5 +84,12 @@ public class Ihm {
         int id = Integer.parseInt(scanner.nextLine());
         service.toggleDone(id);
         System.out.println("État de la tâche inversé !");
+    }
+
+    private void displayOnlyUndone(){
+        System.out.println("\nListe des tâches à faire :");
+        for (Todo todo : service.getAllUndone()) {
+            System.out.println(todo);
+        }
     }
 }
