@@ -10,10 +10,6 @@ public class TodoServiceImpl implements TodoService{
     private static List<Todo> todoList = new ArrayList<>();
     private static int cpt = 1;
 
-    public static List<Todo> getTodoList() {
-        return todoList;
-    }
-
     @Override
     public List<Todo> getAll() {
         return todoList;
