@@ -34,12 +34,17 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void update(int id, String name, String description, boolean done) {
-
+        Todo todoToUpdate = this.getById(id);
+        todoToUpdate.setName(name);
+        todoToUpdate.setDescription(description);
+        todoToUpdate.setDone(done);
     }
 
     @Override
     public void remove(int id) {
-
+        Todo todoToRemove = this.getById(id);
+        todoList.remove(todoToRemove);
+        todoToRemove = null;
     }
 
     @Override
