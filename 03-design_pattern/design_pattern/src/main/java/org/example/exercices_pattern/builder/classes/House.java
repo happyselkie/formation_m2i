@@ -1,10 +1,26 @@
-package org.example.exercices_pattern;
+package org.example.exercices_pattern.builder.classes;
 
-public class Maison {
+public class House {
 
     private int floors;
     private boolean piscine;
-    private String toiture;
+    private String roofing;
     private String color;
 
+    public House(HouseBuilder builder) {
+        floors = builder.getFloors();
+        piscine = builder.isPiscine();
+        roofing = builder.getRoofing();
+        color = builder.getColor();
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "floors=" + floors +
+                ", piscine=" + piscine +
+                ", roofing='" + roofing + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }
