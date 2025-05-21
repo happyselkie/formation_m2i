@@ -7,8 +7,8 @@ public class TextLower extends TextDecorator{
     }
 
     @Override
-    public String transform() {
-        return super.transform().toLowerCase();
+    public String transform(String input) {
+        return super.transform(input).toLowerCase();
     }
 
 }

@@ -7,18 +7,15 @@ import org.example.exercices_pattern.structural.classes.*;
 public class Main {
     public static void main(String[] args) {
         Text simpleText = new SimpleText();
-        System.out.println(simpleText.transform());
+        System.out.println(simpleText.transform("Coucou ! Ceci n'est pas un texte."));
 
-        Text textLower = new TextLower(simpleText);
-        System.out.println(textLower.transform());
+        simpleText = new TextPrefix(simpleText, ">> -");
+        System.out.println(simpleText.transform("Bonjour tout le monde !"));
 
-        Text textUpper = new TextUpper(simpleText);
-        System.out.println(textUpper.transform());
+        simpleText = new TextLower(simpleText);
+        System.out.println(simpleText.transform("Coucou"));
 
-        Text textPrefix = new TextPrefix(simpleText, "Ceci est un préfixe.");
-        System.out.println(textPrefix.transform());
-
-        Text textColor = new TextColor(simpleText, "red");
-        System.out.println(textColor.transform());
+        simpleText = new TextColor(simpleText, "blue");
+        System.out.println(simpleText.transform("Bonjour tout le monde !"));
     }
 }

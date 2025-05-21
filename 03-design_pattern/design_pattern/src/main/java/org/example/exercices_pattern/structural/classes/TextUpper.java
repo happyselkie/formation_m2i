@@ -7,7 +7,7 @@ public class TextUpper extends TextDecorator{
     }
 
     @Override
-    public String transform() {
-        return super.transform().toUpperCase();
+    public String transform(String input) {
+        return super.transform(input).toUpperCase();
     }
 }

@@ -11,7 +11,7 @@ public class TextPrefix extends TextDecorator{
     }
 
     @Override
-    public String transform() {
-        return prefix+" "+super.transform();
+    public String transform(String input) {
+        return prefix+" "+super.transform(input);
     }
 }

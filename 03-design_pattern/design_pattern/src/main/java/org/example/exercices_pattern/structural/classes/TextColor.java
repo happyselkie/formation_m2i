@@ -20,7 +20,7 @@ public class TextColor extends TextDecorator{
     }
 
     @Override
-    public String transform() {
-        return color + super.transform() + Colors.ANSI_RESET;
+    public String transform(String input) {
+        return color + super.transform(input) + Colors.ANSI_RESET;
     }
 }
