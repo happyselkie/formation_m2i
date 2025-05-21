@@ -1,7 +1,6 @@
-package org.example.exercice_bonus_salarie;
+package org.example.excercice_bonus_salarie_heritage;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class App {
@@ -37,7 +36,7 @@ public class App {
 
                     break;
                 case 2 :
-                    System.out.println("il y a "+Salarie.getNbEmploye()+" employés\n");
+                    System.out.println("il y a "+ Salarie.getNbEmploye()+" employés\n");
                     break;
                 case 3 :
                     System.out.println("Le total de tous les salaires est de " + Salarie.getSalaireTotal() + " €\n");

@@ -66,7 +66,6 @@ public class TodoServiceImpl implements TodoService{
     @Override
     public void toggleDone(int id) {
         Todo todoToToggle = this.getById(id);
-        if(todoToToggle.isDone() == true) todoToToggle.setDone(false);
-        else todoToToggle.setDone(true);
+        todoToToggle.setDone(!todoToToggle.isDone());
     }
 }
