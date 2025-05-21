@@ -13,6 +13,11 @@ public class GiftWrapper extends GiftDecorator{
 
     @Override
     public String getToy() {
-        return super.getToy() + ", emballé dans un paquet "+wrapper;
+        return super.getToy() + ", emballé dans un paquet "+wrapper + ". Taille du paquet : " + this.getSize();
+    }
+
+    @Override
+    public String getSize() {
+        return toy.getSize();
     }
 }

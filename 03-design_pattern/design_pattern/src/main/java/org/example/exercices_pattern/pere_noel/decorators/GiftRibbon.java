@@ -13,7 +13,12 @@ public class GiftRibbon extends GiftDecorator{
 
     @Override
     public String getToy() {
-        return super.getToy() + ", avec du ruban "+ribbon;
+        return super.getToy() + ", avec du ruban "+ribbon+ ". Taille du paquet : " + this.getSize();
+    }
+
+    @Override
+    public String getSize() {
+        return toy.getSize();
     }
 
 }

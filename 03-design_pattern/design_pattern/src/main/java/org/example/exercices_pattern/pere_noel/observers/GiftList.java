@@ -16,7 +16,7 @@ public class GiftList implements Observer{
 
     @Override
     public void notify(Toy toy) {
-        System.out.println("Un cadeau a été ajouté sur la liste "+name+": " + toy);
+        System.out.println("#################### Un cadeau a été ajouté sur la liste "+name+": " + toy + " #######################");
         toys.add(toy);
     }
 

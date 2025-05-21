@@ -1,11 +1,11 @@
 package org.example.exercices_pattern.pere_noel.factories;
 
-public class Gameboy implements Toy{
+public class Bike implements Toy{
 
     private String kid;
-    private String size = "petit";
+    private String size = "grand";
 
-    public Gameboy(String kid) {
+    public Bike(String kid) {
         this.kid = kid;
     }
 
@@ -19,7 +19,7 @@ public class Gameboy implements Toy{
 
     @Override
     public String getToy() {
-        return "Un gameboy pour "+kid;
+        return "Un vélo pour "+kid;
     }
 
     @Override

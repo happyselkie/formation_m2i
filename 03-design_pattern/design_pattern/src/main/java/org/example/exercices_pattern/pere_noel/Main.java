@@ -30,7 +30,6 @@ public class Main {
         Toy gameboyForNathan = factoryPlant.buildToy("gameboy", "Nathan");
 
 
-
         furbyForLucy = new GiftWrapper(furbyForLucy, "à lignes");
         System.out.printf(furbyForLucy.getToy()+"\n");
 

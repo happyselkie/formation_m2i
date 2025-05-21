@@ -1,7 +1,6 @@
 package org.example.exercices_pattern.pere_noel.observers;
 
 import org.example.exercices_pattern.pere_noel.factories.Furby;
-import org.example.exercices_pattern.pere_noel.factories.Gameboy;
 import org.example.exercices_pattern.pere_noel.factories.Toy;
 
 public class FurbyObserver implements Observer{
