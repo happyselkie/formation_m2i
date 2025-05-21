@@ -4,16 +4,16 @@ public class Main {
     public static void main(String[] args) {
         EventManager eventManager = new EventManager();
 
-        Observer observerSave = new ObserverSave("observerSave");
-        Observer createObserver = new CreateEventObserver("createObserver");
-        Observer deleteObserver = new DeleteObserver("deleteObserver");
+        Observer eventObserver = new EventObserver("eventObserver");
+        Observer mailObserver = new MailObserver("mailObserver");
+        Observer rockObserver = new EventRockObserver("rockObserver");
 
-        eventManager.addObserver(observerSave);
-        eventManager.addCreateObservers(createObserver);
-        eventManager.addDeleteObservers(deleteObserver);
+        eventManager.addObserver(eventObserver);
+        eventManager.addObserver(mailObserver);
+        eventManager.addObserver(rockObserver);
 
-        Event event1 = eventManager.newEvent("Event 01");
-        Event event2 = eventManager.newEvent("Event 02");
-        eventManager.delEvent(event1);
+
+        eventManager.newEvent("Concert Hans Zimmer", "bo");
+        eventManager.newEvent("Concert Led Zepplin", "rock");
     }
 }
