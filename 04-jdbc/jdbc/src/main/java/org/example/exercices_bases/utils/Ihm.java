@@ -61,7 +61,9 @@ public class Ihm {
 
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
-            System.out.println("Un nouvel étudiant à l'id " + resultSet.getInt(1) + " vient d'être ajouté");
+            if (resultSet.next()){
+                System.out.println("Un nouvel étudiant à l'id " + resultSet.getInt(1) + " vient d'être ajouté");
+            }
 
         } catch (SQLException e){
             System.out.println("La requete " + request + " a échoué : "+e.getMessage());
