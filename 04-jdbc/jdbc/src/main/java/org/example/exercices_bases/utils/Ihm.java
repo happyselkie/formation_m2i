@@ -1,6 +1,12 @@
 package org.example.exercices_bases.utils;
 
+import org.example.exercices_bases.entity.Student;
+
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Ihm {
@@ -46,23 +52,42 @@ public class Ihm {
         System.out.print("Numéro de classe : ");
         int classroom_num = scanner.nextInt();
         scanner.nextLine();
-        System.out.print("Date de diplôme (jj-mm-yy) : ");
-        String degree_date = scanner.nextLine();
+
+        boolean validDate = false;
+        Date degree_date = new Date();
+
+        while (!validDate){
+            System.out.print("Date de diplôme (jj-mm-yy) : ");
+            String degreeDate = scanner.nextLine();
+            DateFormat df = new SimpleDateFormat("dd-MM-yy");
+            try {
+                degree_date = df.parse(degreeDate);
+                validDate = true;
+            } catch (ParseException e) {
+                System.out.println("Format de la date incorrect. Veuillez insérer une date de diplôme correcte (jj-mm-yy): ");
+            }
+        }
+
+        java.sql.Date sqlDate = new java.sql.Date(degree_date.getTime());
+
+        Student student = new Student(firstname, lastname, classroom_num, sqlDate);
+
 
         String request = "INSERT INTO students (firstname, lastname, classroom_num, degree_date) VALUES (?,?,?,?)";
 
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, firstname);
-            preparedStatement.setString(2, lastname);
-            preparedStatement.setInt(3, classroom_num);
-            preparedStatement.setString(4, degree_date);
+            preparedStatement.setString(1, student.getFirstname());
+            preparedStatement.setString(2, student.getLastname());
+            preparedStatement.setInt(3, student.getClassroom_num());
+            preparedStatement.setDate(4, student.getDegree_date());
             preparedStatement.execute();
 
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
             if (resultSet.next()){
-                System.out.println("Un nouvel étudiant à l'id " + resultSet.getInt(1) + " vient d'être ajouté");
+                student.setId(resultSet.getInt(1));
+                System.out.println("Nouvel étudiant : " + student);
             }
 
         } catch (SQLException e){
@@ -121,6 +146,7 @@ public class Ihm {
         String request = "DELETE FROM students where id = ?";
 
         try{
+
             PreparedStatement preparedStatement = connection.prepareStatement(request);
             preparedStatement.setInt(1, idToDelete);
 

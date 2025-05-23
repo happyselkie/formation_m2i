@@ -1,6 +1,7 @@
 package org.example.exercices_bases;
 
 import org.example.demo_bases.utils.ConnectionUtils;
+import org.example.exercices_bases.utils.DatabaseManager;
 import org.example.exercices_bases.utils.Ihm;
 
 import java.sql.Connection;
@@ -12,7 +13,7 @@ public class Main {
         Connection connection = null;
 
         try{
-            connection = ConnectionUtils.getSQLConnection();
+            connection = new DatabaseManager().getConnection();
 
             Ihm imh = new Ihm(connection);
             imh.start();
