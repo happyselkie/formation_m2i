@@ -40,8 +40,17 @@ public class AnimalService {
         return animal;
     }
 
-    public void editAnimal(Animal animal){
+    public Animal findById(int id){
+        try {
+            Animal animal = em.getReference(Animal.class, id); // avec getReference
+            return animal;
+        } catch (EntityNotFoundException e){
+            System.out.printf(e.getMessage());
+        }
+        return null;
+    }
 
+    public void editAnimal(Animal animal){
         try{
             Animal editAnimal = em.find(Animal.class, animal.getId());
             em.getTransaction().begin();
@@ -55,4 +64,9 @@ public class AnimalService {
         }
     }
 
+    public void delete(Animal animal){
+        em.getTransaction().begin();
+        em.remove(animal);
+        em.getTransaction().commit();
+    }
 }
