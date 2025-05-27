@@ -1,13 +1,10 @@
 package org.example.tpZoo;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import org.example.tpZoo.utils.Ihm;
+
 
 public class Main {
     public static void main(String[] args) {
-
-
-
+        new Ihm().start();
     }
 }
