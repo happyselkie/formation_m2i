@@ -3,6 +3,7 @@ package org.example.tpZoo.entity;
 import org.example.tpZoo.utils.Diet;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 public class AnimalDAO {
@@ -28,7 +29,7 @@ public class AnimalDAO {
         return null;
     }
 
-    public List<Animal> findByDiet(String diet){
+    public List<Animal> findByDiet(Diet diet){
         TypedQuery<Animal> query = em.createQuery("Select a from Animal a where a.diet =  :diet", Animal.class);
         query.setParameter("diet", diet);
         return query.getResultList();
@@ -40,13 +41,13 @@ public class AnimalDAO {
         return query.getResultList();
     }
 
-    public void update(Animal animal){
+    public void update(Animal animal, String name, int age, Diet diet, Date date){
         try{
             em.getTransaction().begin();
-            animal.setName(animal.getName());
-            animal.setAge(animal.getAge());
-            animal.setDiet(animal.getDiet());
-            animal.setArrivalDate(animal.getArrivalDate());
+            animal.setName(name);
+            animal.setAge(age);
+            animal.setDiet(diet);
+            animal.setArrivalDate(date);
             em.getTransaction().commit();
         } catch (EntityNotFoundException e){
             System.out.println(e.getMessage());

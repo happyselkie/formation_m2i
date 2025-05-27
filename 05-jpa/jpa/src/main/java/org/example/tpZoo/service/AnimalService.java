@@ -27,7 +27,7 @@ public class AnimalService {
         return animalDAO.findById(id);
     }
 
-    public List<Animal> findByDiet(String diet){
+    public List<Animal> findByDiet(Diet diet){
        return animalDAO.findByDiet(diet);
     }
 
@@ -35,10 +35,9 @@ public class AnimalService {
         return animalDAO.findByName(name);
     }
 
-    public void editAnimal(Animal animal){
+    public void editAnimal(Animal animal, String name, int age, String diet, Date date){
         try{
-            Animal editAnimal = animalDAO.findById(animal.getId());
-            animalDAO.update(editAnimal);
+           animalDAO.update(animal, name, age, Diet.valueOf(diet.toUpperCase()), date);
 
         } catch (EntityNotFoundException e){
             System.out.println(e.getMessage());

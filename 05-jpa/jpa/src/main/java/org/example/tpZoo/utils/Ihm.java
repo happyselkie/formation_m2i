@@ -150,7 +150,7 @@ public class Ihm {
             }
         }
 
-        List<Animal> animals = animalService.findByDiet(animalDiet);
+        List<Animal> animals = animalService.findByDiet(Diet.valueOf(animalDiet));
 
         System.out.println(animals);
     }
@@ -159,12 +159,49 @@ public class Ihm {
         System.out.println("Veuillez saisir un ID : ");
         int id = scanner.nextInt();
         scanner.nextLine();
+        System.out.print("Nom : ");
+        String animalName = scanner.nextLine();
+        System.out.print("age : ");
+        int animalAge = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Régime alimentaire : (MEAT, VEGETABLES, CEREALS)");
+        String animalDiet = scanner.nextLine();
+        boolean validDiet = false;
+
+        for(Diet validDiets : Diet.values()) {
+            if(validDiets.name().equals(animalDiet)) validDiet = true;
+        }
+
+        while (!validDiet){
+            System.out.printf("Erreur, veuillez insérer un régime alimentaire valide (MEAT, VEGETABLES, CEREALS) : ");
+            animalDiet = scanner.nextLine();
+            for(Diet validDiets : Diet.values()) {
+                if(validDiets.name().equals(animalDiet)) validDiet = true;
+            }
+        }
+
+        boolean validDate = false;
+        Date arrival_date = new Date();
+
+        while (!validDate){
+            System.out.print("Date d'arrivée (jj-mm-yy) : ");
+            String arrivalDate = scanner.nextLine();
+            DateFormat df = new SimpleDateFormat("dd-MM-yy");
+            try {
+                arrival_date = df.parse(arrivalDate);
+                validDate = true;
+            } catch (ParseException e) {
+                System.out.println("Format de la date incorrect. Veuillez insérer une date d'arrivée correcte (jj-mm-yy): ");
+            }
+        }
+
+        java.sql.Date sqlDate = new java.sql.Date(arrival_date.getTime());
 
         Animal animal = animalService.findById(id);
 
         System.out.print("Animal : "+animal);
 
-        animalService.editAnimal(animal);
+        animalService.editAnimal(animal, animalName, animalAge, animalDiet, sqlDate);
 
         System.out.println(" modifié : "+animal);
     }
