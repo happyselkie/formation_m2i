@@ -13,11 +13,11 @@ public class DatabaseManager {
         instance = emf.createEntityManager();
     }
 
-    public static synchronized DatabaseManager getInstance() { // synchronized : proteger en cas de multi-threading, qu'une seule instance
+    /*public static synchronized DatabaseManager getInstance() { // synchronized : proteger en cas de multi-threading, qu'une seule instance
         if(instance == null) {
             instance = new DatabaseManager();
         }
         return instance;
-    }
+    }*/
 
 }
