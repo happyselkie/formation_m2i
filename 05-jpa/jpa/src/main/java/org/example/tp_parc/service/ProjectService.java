@@ -36,6 +36,10 @@ public class ProjectService {
         projectDAO.addComputerToProject(id, computer);
     }
 
+    public void removeComputer (int id, Computer computer) {
+        projectDAO.removeComputer(id, computer);
+    }
+
 
 
     public void deleteProject(int id) {

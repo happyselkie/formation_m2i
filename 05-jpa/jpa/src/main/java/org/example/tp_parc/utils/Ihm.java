@@ -33,8 +33,9 @@ public class Ihm {
             System.out.println("*   [9] Ajouter un projet                                        *");
             System.out.println("*   [10] Voir les projets                                         *");
             System.out.println("*   [11] Ajouter un ordinateur à un projet                        *");
-            System.out.println("*   [12] Modifier un projet                                       *");
-            System.out.println("*   [13] Supprimer un projet                                      *");
+            System.out.println("*   [12] Supprimer un ordinateur d'un projet                      *");
+            System.out.println("*   [13] Modifier un projet                                       *");
+            System.out.println("*   [14] Supprimer un projet                                      *");
             System.out.println("*   [0] Quitter                                                  *");
             System.out.print("============================ Choix : ");
 
@@ -76,9 +77,12 @@ public class Ihm {
                     addComputerToProject();
                     break;
                 case 12:
-                    updateProject();
+                    removeComputerFromProject();
                     break;
                 case 13:
+                    updateProject();
+                    break;
+                case 14:
                     deleteProject();
                     break;
                 case 0:
@@ -296,6 +300,34 @@ public class Ihm {
         }
 
         projectService.addComputer(projectId, computer);
+    }
+
+    private static void removeComputerFromProject(){
+        System.out.println("Saisir l'id du projet :");
+        int projectId = scanner.nextInt();
+        scanner.nextLine();
+        Project project = null;
+
+        try {
+            project = projectService.getProjectById(projectId);
+        } catch (Exception e) {
+            System.out.println("Il n'y a pas de projet avec cet id");
+            return;
+        }
+
+        System.out.println("Saisir l'id de l'ordinateur à supprimer :");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        Computer computer = null;
+
+        try {
+            computer = computerService.getComputerById(id);
+        } catch (Exception e) {
+            System.out.println("Il n'y a pas d'ordinateur avec cet id");
+            return;
+        }
+
+        projectService.removeComputer(projectId, computer);
     }
 
     private static void displayAllProjects() {
