@@ -1,4 +1,4 @@
-package org.example.Demorelation.ManyToMany;
+package org.example.demoRelation.ManyToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +25,13 @@ public class Ingredient {
 
     @ManyToMany(mappedBy = "ingredients")
     private List<Recette> recettes;
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

@@ -1,4 +1,4 @@
-package org.example.Demorelation.ManyToMany;
+package org.example.demoRelation.ManyToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,4 +24,10 @@ public class Recette {
     joinColumns = @JoinColumn(name = "recetteId"),
     inverseJoinColumns = @JoinColumn(name = "ingredientId"))
     private List<Ingredient> ingredients;
+
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
+    }
+
+
 }
