@@ -2,11 +2,9 @@ package org.example.tp_parc.utils;
 
 import org.example.tp_parc.dao.OperatingSystemDAO;
 import org.example.tp_parc.dao.ProcessorDAO;
-import org.example.tp_parc.entity.Computer;
-import org.example.tp_parc.entity.Identification;
-import org.example.tp_parc.entity.OperatingSystem;
-import org.example.tp_parc.entity.Processor;
+import org.example.tp_parc.entity.*;
 import org.example.tp_parc.service.ComputerService;
+import org.example.tp_parc.service.ProjectService;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -15,6 +13,7 @@ import java.util.Scanner;
 public class Ihm {
 
     private static ComputerService computerService = new ComputerService();
+    private static ProjectService projectService = new ProjectService();
     private static ProcessorDAO processorDAO = new ProcessorDAO();
     private static OperatingSystemDAO operatingSystemDAO = new OperatingSystemDAO();
     private static Scanner scanner = new Scanner(System.in);
@@ -31,6 +30,11 @@ public class Ihm {
             System.out.println("*   [6] Voir tous les ordinateurs                                *");
             System.out.println("*   [7] Voir tous les ordinateurs en fonction de leur processeur *");
             System.out.println("*   [8] Voir tous les ordinateurs en fonction de leur os         *");
+            System.out.println("*   [9] Ajouter un projet                                        *");
+            System.out.println("*   [10] Voir les projets                                         *");
+            System.out.println("*   [11] Ajouter un ordinateur à un projet                        *");
+            System.out.println("*   [12] Modifier un projet                                       *");
+            System.out.println("*   [13] Supprimer un projet                                      *");
             System.out.println("*   [0] Quitter                                                  *");
             System.out.print("============================ Choix : ");
 
@@ -61,6 +65,21 @@ public class Ihm {
                     break;
                 case 8:
                     displayComputersByOS();
+                    break;
+                case 9:
+                    createProject();
+                    break;
+                case 10:
+                    displayAllProjects();
+                    break;
+                case 11:
+                    addComputerToProject();
+                    break;
+                case 12:
+                    updateProject();
+                    break;
+                case 13:
+                    deleteProject();
                     break;
                 case 0:
                     running = false;
@@ -240,5 +259,75 @@ public class Ihm {
         for (Computer computer : computers) {
             System.out.println(computer);
         }
+    }
+
+    private static void createProject(){
+        System.out.print("Nom du projet  : ");
+        String projectName = scanner.nextLine();
+        System.out.print("Description  : ");
+        String projectDesc = scanner.nextLine();
+
+        projectService.create(projectName, projectDesc);
+    }
+
+    private static void addComputerToProject(){
+        System.out.println("Saisir l'id du projet :");
+        int projectId = scanner.nextInt();
+        scanner.nextLine();
+        Project project = null;
+
+        try {
+            project = projectService.getProjectById(projectId);
+        } catch (Exception e) {
+            System.out.println("Il n'y a pas de projet avec cet id");
+            return;
+        }
+
+        System.out.println("Saisir l'id de l'ordinateur à ajouter :");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        Computer computer = null;
+
+        try {
+            computer = computerService.getComputerById(id);
+        } catch (Exception e) {
+            System.out.println("Il n'y a pas d'ordinateur avec cet id");
+            return;
+        }
+
+        projectService.addComputer(projectId, computer);
+    }
+
+    private static void displayAllProjects() {
+        List<Project> projects = projectService.getAll();
+    }
+
+    private static void updateProject(){
+        System.out.println("Saisir l'id du projet à modifier :");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        Project project = null;
+
+        try {
+            project = projectService.getProjectById(id);
+        } catch (Exception e) {
+            System.out.println("Il n'y a pas de projet avec cet id");
+        }
+
+        System.out.print("Nom du projet  : ");
+        project.setName(scanner.nextLine());
+        System.out.print("Description  : ");
+        project.setDescription(scanner.nextLine());
+
+        projectService.updateProject(project);
+    }
+
+    private static void deleteProject(){
+        System.out.print("ID du projet à supprimer : ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        projectService.deleteProject(id);
+        System.out.println("Projet supprimé avec succès !");
     }
 }

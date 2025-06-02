@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.demoRelation.OneToMany.Departement;
+import org.example.demoRelation.ManyToMany.Recette;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 
@@ -31,4 +32,22 @@ public class Computer {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="idOs")
     private OperatingSystem operatingSystem;
+
+    @ManyToMany(mappedBy = "project")
+    private List<Project> projects;
+
+    public void removeProject(Project project) {
+        projects.remove(project);
+    }
+
+    @Override
+    public String toString() {
+        return "Computer{" +
+                "operatingSystem=" + operatingSystem +
+                ", processor=" + processor +
+                ", identification=" + identification +
+                ", model='" + model + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

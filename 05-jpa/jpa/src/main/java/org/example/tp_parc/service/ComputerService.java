@@ -3,10 +3,7 @@ package org.example.tp_parc.service;
 import org.example.tp_parc.dao.ComputerDAO;
 import org.example.tp_parc.dao.OperatingSystemDAO;
 import org.example.tp_parc.dao.ProcessorDAO;
-import org.example.tp_parc.entity.Computer;
-import org.example.tp_parc.entity.Identification;
-import org.example.tp_parc.entity.OperatingSystem;
-import org.example.tp_parc.entity.Processor;
+import org.example.tp_parc.entity.*;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -50,6 +47,11 @@ public class ComputerService {
     }
 
     public void deleteComputer(int id) {
+        Computer computer = computerDao.getById(id, Computer.class);
+        List<Project> projects =  computer.getProjects();
+        for (Project project : projects) {
+            computer.removeProject(project);
+        }
         computerDao.delete(id, Computer.class);
     }
 }
