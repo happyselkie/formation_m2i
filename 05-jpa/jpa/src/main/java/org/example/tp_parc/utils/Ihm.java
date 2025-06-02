@@ -31,11 +31,11 @@ public class Ihm {
             System.out.println("*   [7] Voir tous les ordinateurs en fonction de leur processeur *");
             System.out.println("*   [8] Voir tous les ordinateurs en fonction de leur os         *");
             System.out.println("*   [9] Ajouter un projet                                        *");
-            System.out.println("*   [10] Voir les projets                                         *");
-            System.out.println("*   [11] Ajouter un ordinateur à un projet                        *");
-            System.out.println("*   [12] Supprimer un ordinateur d'un projet                      *");
-            System.out.println("*   [13] Modifier un projet                                       *");
-            System.out.println("*   [14] Supprimer un projet                                      *");
+            System.out.println("*   [10] Voir les projets                                        *");
+            System.out.println("*   [11] Ajouter un ordinateur à un projet                       *");
+            System.out.println("*   [12] Supprimer un ordinateur d'un projet                     *");
+            System.out.println("*   [13] Modifier un projet                                      *");
+            System.out.println("*   [14] Supprimer un projet                                     *");
             System.out.println("*   [0] Quitter                                                  *");
             System.out.print("============================ Choix : ");
 

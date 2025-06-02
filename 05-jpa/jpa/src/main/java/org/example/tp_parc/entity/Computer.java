@@ -33,7 +33,7 @@ public class Computer {
     @JoinColumn(name="idOs")
     private OperatingSystem operatingSystem;
 
-    @ManyToMany(mappedBy = "project")
+    @ManyToMany(mappedBy = "computers")
     private List<Project> projects;
 
     public void removeProject(Project project) {

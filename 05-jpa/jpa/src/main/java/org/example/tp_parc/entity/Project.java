@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.demoRelation.ManyToMany.Ingredient;
-import org.example.demoRelation.ManyToMany.Recette;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,7 +25,7 @@ public class Project {
 
     @ManyToMany
     @JoinTable(name = "project_computer",
-            joinColumns = @JoinColumn(name = "projectID"),
+            joinColumns = @JoinColumn(name = "projectId"),
             inverseJoinColumns = @JoinColumn(name = "computerId"))
     private List<Computer> computers;
 
