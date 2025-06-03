@@ -31,15 +31,22 @@ public class Test {
         rogueAlly.setRef("F7454F5");
        productDAO.save(rogueAlly);*/
 
-        List<Product> ProductsMaxFiveHundreds = productDAO.getByPriceUnderAmount(500);
+        List<Product> productsAll = productDAO.get();
 
-        for (Product product : ProductsMaxFiveHundreds) {
+        for (Product product : productsAll) {
             System.out.println(product);
         }
 
-        List<Product> ProductsApril = productDAO.getFromToDates(sqlDate("01-04-2025"), sqlDate("30-04-2025"));
 
-        for (Product product : ProductsApril) {
+        List<Product> productsMaxFiveHundreds = productDAO.getByPriceUnderAmount(500);
+
+        for (Product product : productsMaxFiveHundreds) {
+            System.out.println(product);
+        }
+
+        List<Product> productsApril = productDAO.getFromToDates(sqlDate("01-04-2025"), sqlDate("30-04-2025"));
+
+        for (Product product : productsApril) {
             System.out.println(product);
         }
     }
