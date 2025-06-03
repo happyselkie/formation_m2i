@@ -4,6 +4,7 @@ import org.example.entity.Product;
 import org.example.util.SessionFactorySingleton;
 import org.hibernate.SessionFactory;
 
+import javax.persistence.TypedQuery;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,9 @@ public class ProductDAO extends BaseDAO<Product> {
     public List<Product> getByPriceUnderAmount(int amount){
         try{
             session = sessionFactory.openSession();
-            return session.createQuery("select p from Product p where p.price <= " + amount, Product.class).getResultList();
+            TypedQuery<Product> query = session.createQuery("select p from Product p where p.price <= :amount ", Product.class);
+            query.setParameter("amount", amount);
+            return query.getResultList();
         } catch (Exception ex){
             return new ArrayList<>();
         } finally {
@@ -40,7 +43,10 @@ public class ProductDAO extends BaseDAO<Product> {
     public List<Product> getFromToDates(Date from, Date to){
         try{
             session = sessionFactory.openSession();
-            return session.createQuery("select p from Product p where p.purchaseDate >= " + from + " AND p.purchaseDate < " +to , Product.class).getResultList();
+            TypedQuery<Product> query = session.createQuery("select p from Product p where p.purchaseDate between " + from + " AND " +to , Product.class);
+            query.setParameter("from", from);
+            query.setParameter("to", to);
+            return query.getResultList();
         } catch (Exception ex){
             return new ArrayList<>();
         } finally {

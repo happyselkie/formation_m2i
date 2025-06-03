@@ -33,18 +33,18 @@ public class Test {
 
         List<Product> productsAll = productDAO.get();
 
-        for (Product product : productsAll) {
+        /*for (Product product : productsAll) {
             System.out.println(product);
-        }
+        }*/
 
 
         List<Product> productsMaxFiveHundreds = productDAO.getByPriceUnderAmount(500);
 
-        for (Product product : productsMaxFiveHundreds) {
+        /*for (Product product : productsMaxFiveHundreds) {
             System.out.println(product);
         }
-
-        List<Product> productsApril = productDAO.getFromToDates(sqlDate("01-04-2025"), sqlDate("30-04-2025"));
+*/
+        List<Product> productsApril = productDAO.getFromToDates(sqlDate("01/01/2025"), sqlDate("30/12/2025"));
 
         for (Product product : productsApril) {
             System.out.println(product);
