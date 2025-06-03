@@ -1,30 +1,26 @@
 package org.example.util;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-public class SessionSingleton {
+public class SessionFactorySingleton {
+
     private static StandardServiceRegistry registry;
     private static SessionFactory sessionFactory;
 
-    private SessionSingleton() {
+    private SessionFactorySingleton (){
         registry = new StandardServiceRegistryBuilder().configure().build();
         sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     }
 
-    public static synchronized Session getSession(){
+    public static synchronized  SessionFactory getSessionFactory (){
         if(sessionFactory == null){
-            new SessionSingleton();
+            new SessionFactorySingleton();
         }
-        return sessionFactory.openSession();
+        return sessionFactory;
     }
 
-    public static void closeSession(){
-        sessionFactory.close();
-        registry.close();
-    }
 
 }

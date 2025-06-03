@@ -1,40 +1,50 @@
 package org.example.repository;
 
 import org.example.entity.Product;
-import org.hibernate.Session;
+import org.example.util.SessionFactorySingleton;
+import org.hibernate.SessionFactory;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDAO {
+public class ProductDAO extends BaseDAO<Product> {
 
-   private Session session;
-
-    public ProductDAO(Session session) {
-        this.session = session;
+    public ProductDAO() {
+        super(SessionFactorySingleton.getSessionFactory(), Product.class);
     }
 
-    public Product findById(int id) {
-        return session.get(Product.class, id);
+    @Override
+    public List<Product> get() {
+        try{
+            session = sessionFactory.openSession();
+            return session.createQuery("select p from Product p", Product.class).getResultList();
+        }catch (Exception ex){
+            return new ArrayList<>();
+        }finally {
+            session.close();
+        }
     }
 
-    public List<Product> findAll() {
-        return session.createQuery("select p from Product p", Product.class).list();
-        //return session.createCriteria(Person.class).list();
+    public List<Product> getByPriceUnderAmount(int amount){
+        try{
+            session = sessionFactory.openSession();
+            return session.createQuery("select p from Product p where p.price <= " + amount, Product.class).getResultList();
+        } catch (Exception ex){
+            return new ArrayList<>();
+        } finally {
+            session.close();
+        }
     }
 
-    public Product save(Product product) {
-        session.beginTransaction();
-        session.saveOrUpdate(product);
-        session.getTransaction().commit();
-
-        return product;
+    public List<Product> getFromToDates(Date from, Date to){
+        try{
+            session = sessionFactory.openSession();
+            return session.createQuery("select p from Product p where p.purchaseDate >= " + from + " AND p.purchaseDate < " +to , Product.class).getResultList();
+        } catch (Exception ex){
+            return new ArrayList<>();
+        } finally {
+            session.close();
+        }
     }
-
-    public boolean delete(Product product) {
-        session.beginTransaction();
-        session.delete(product);
-        session.getTransaction().commit();
-        return true;
-    }
-
 }

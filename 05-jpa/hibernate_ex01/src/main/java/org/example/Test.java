@@ -2,18 +2,18 @@ package org.example;
 
 import org.example.entity.Product;
 import org.example.repository.ProductDAO;
-import org.example.util.SessionSingleton;
 
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        ProductDAO productDAO = new ProductDAO(SessionSingleton.getSession());
+        ProductDAO productDAO = new ProductDAO();
 
-        Product playstation = Product.builder().brand("Sony").ref("F424242").price(399.9).stock(25).purchaseDate(sqlDate("25/05/2025")).build();
+/*        Product playstation = Product.builder().brand("Sony").ref("F424242").price(399.9).stock(25).purchaseDate(sqlDate("25/05/2025")).build();
         Product nintendoSwitch = Product.builder().brand("Nintendo").ref("242424F").price(299.9).stock(40).purchaseDate(sqlDate("24/04/2025")).build();
         Product xbox = Product.builder().brand("Microsoft").ref("F4E7SQD4F").price(349.9).stock(60).purchaseDate(sqlDate("23/03/2025")).build();
         Product steamDeck = Product.builder().brand("Valve").ref("42D42G42T").price(599.9).stock(10).purchaseDate(sqlDate("22/02/2025")).build();
@@ -29,7 +29,19 @@ public class Test {
         productDAO.delete(productDAO.findById(3));
 
         rogueAlly.setRef("F7454F5");
-       productDAO.save(rogueAlly);
+       productDAO.save(rogueAlly);*/
+
+        List<Product> ProductsMaxFiveHundreds = productDAO.getByPriceUnderAmount(500);
+
+        for (Product product : ProductsMaxFiveHundreds) {
+            System.out.println(product);
+        }
+
+        List<Product> ProductsApril = productDAO.getFromToDates(sqlDate("01-04-2025"), sqlDate("30-04-2025"));
+
+        for (Product product : ProductsApril) {
+            System.out.println(product);
+        }
     }
 
 
