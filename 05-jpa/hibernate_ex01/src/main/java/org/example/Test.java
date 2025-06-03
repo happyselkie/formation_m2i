@@ -33,7 +33,6 @@ public class Test {
     }
 
 
-
     public static Date sqlDate(String date){
         java.util.Date purchaseDate = new java.util.Date();
 
