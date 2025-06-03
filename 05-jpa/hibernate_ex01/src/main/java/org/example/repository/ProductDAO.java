@@ -40,7 +40,7 @@ public class ProductDAO extends BaseDAO<Product> {
         }
     }
 
-    public List<Product> getFromToDates(Date from, Date to){
+    public List<Product> getFromToDates(String from, String to){
         try{
             session = sessionFactory.openSession();
             TypedQuery<Product> query = session.createQuery("select p from Product p where p.purchaseDate between :from AND :to" , Product.class);

@@ -44,7 +44,7 @@ public class Test {
             System.out.println(product);
         }
 */
-        List<Product> productsApril = productDAO.getFromToDates(sqlDate("01/01/2025"), sqlDate("30/12/2025"));
+        List<Product> productsApril = productDAO.getFromToDates("2025-04-01","2025-04-30");
 
         for (Product product : productsApril) {
             System.out.println(product);
