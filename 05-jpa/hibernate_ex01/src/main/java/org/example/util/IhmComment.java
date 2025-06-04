@@ -68,7 +68,7 @@ public class IhmComment {
         float note = scanner.nextFloat();
         scanner.nextLine();
 
-        productService.addProductComment(productId, content, publisedDate, note);
+        productService.addProductComment(product, content, publisedDate, note);
 
         System.out.println("Le commentaire à bien été ajoutée au produit "+productName+"!");
     }
@@ -86,7 +86,7 @@ public class IhmComment {
             System.out.println("Le commentaire "+idComment+" n'existe pas !");
         }
 
-        productService.deleteProductComment(productId, idComment);
+        productService.deleteProductComment(idComment);
 
         System.out.println("Le commentaire du produit "+productName+" a été supprimée !");
     }

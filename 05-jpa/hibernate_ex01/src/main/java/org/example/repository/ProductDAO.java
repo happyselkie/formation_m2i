@@ -39,6 +39,24 @@ public class ProductDAO extends BaseDAO<Product> {
         }
     }
 
+    @Override
+    public Product get(int id) {
+        try{
+            session = sessionFactory.openSession();
+            Product product = session.get(Product.class,id);
+
+            product.setProductPictures(session.createQuery("select p from ProductPicture p where p.product = product", ProductPicture.class).getResultList());
+            product.setProductComments(session.createQuery("select p from ProductComment p where p.product = product", ProductComment.class).getResultList());
+
+
+            return product;
+        }catch (Exception ex){
+            return null;
+        }finally {
+            session.close();
+        }
+    }
+
     public List<Product> getByPriceUnderAmount(int amount){
         try{
             session = sessionFactory.openSession();
@@ -156,65 +174,6 @@ public class ProductDAO extends BaseDAO<Product> {
         } catch (EntityNotFoundException ex){
             System.out.println("Product not found");
             return new ArrayList<>();
-        }  finally {
-            session.close();
-        }
-    }
-
-    public void addProductPicture(int idProduct, ProductPicture productPicture){
-        try{
-            Product product = get(idProduct);
-            List<ProductPicture> productPictures = getProductPictures(idProduct);
-            productPictures.add(productPicture);
-            product.setProductPictures(productPictures);
-            save(product);
-        } catch (EntityNotFoundException ex){
-            System.out.println("Product not found");
-            return;
-        } finally {
-            session.close();
-        }
-    }
-
-    public void removeProductPicture(int idProduct, ProductPicture productPicture){
-        try{
-            Product product = get(idProduct);
-            List<ProductPicture> productPictures = getProductPictures(idProduct);
-            productPictures.remove(productPicture);
-            product.setProductPictures(productPictures);
-            save(product);
-        } catch (EntityNotFoundException ex){
-            System.out.println("Product not found");
-        }
-    }
-
-    public void addProductComment(int idProduct, ProductComment productComment){
-        try{
-            session = sessionFactory.openSession();
-            Product product = get(idProduct);
-            List<ProductComment> productComments = getProductComments(idProduct);
-            productComments.add(productComment);
-            product.setProductComments(productComments);
-            save(product);
-        } catch (EntityNotFoundException ex){
-            System.out.println("Product not found");
-            return;
-        } finally {
-            session.close();
-        }
-    }
-
-    public void removeProductComment(int idProduct, ProductComment productComment){
-        try{
-            session = sessionFactory.openSession();
-            Product product = get(idProduct);
-            List<ProductComment> productComments = getProductComments(idProduct);
-            productComments.remove(productComment);
-            product.setProductComments(productComments);
-            save(product);
-        } catch (EntityNotFoundException ex){
-            System.out.println("Product not found");
-            return;
         }  finally {
             session.close();
         }

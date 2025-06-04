@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class IhmPicture {
-    private static Scanner scanner;
-    private static Product product;
-    private static String productName;
-    private static int productId;
-    private static ProductService productService;
+    private Scanner scanner;
+    private Product product;
+    private String productName;
+    private int productId;
+    private ProductService productService;
 
     public IhmPicture(Scanner scanner, Product product, ProductService productService) {
         this.scanner = scanner;
@@ -22,7 +22,7 @@ public class IhmPicture {
         productId = product.getId();
     }
 
-    public static void start(){
+    public void start(){
         boolean running = true;
         while (running) {
             System.out.println("******** Modifier les images d'un produit : ("+productName+") *********");
@@ -55,16 +55,16 @@ public class IhmPicture {
         System.out.println("Retour...");
     }
 
-    public static void addPicture() {
+    public void addPicture() {
         System.out.println("Saisir l'url de l'image");
         String path = scanner.nextLine();
 
-        productService.addProductPicture(productId, path);
+        productService.addProductPicture(product, path);
 
         System.out.println("L'image "+path+" à bien été ajoutée au produit "+productName+"!");
     }
 
-    public static void removePicture() {
+    public void removePicture() {
         System.out.println("Saisir l'id de l'image : ");
         int idPicture = scanner.nextInt();
         scanner.nextLine();
@@ -79,13 +79,13 @@ public class IhmPicture {
             System.out.println("L'image "+idPicture+" n'existe pas !");
         }
 
-        productService.deleteProductPicture(productId, idPicture);
+        productService.deleteProductPicture(idPicture);
 
         System.out.println("L'image "+path+" du produit "+productName+" a supprimée !");
     }
 
-    public static void displayPictures() {
-        product.getProductPictures().forEach(System.out::println);
+    public void displayPictures() {
+        productService.getProductPictures(productId).forEach(System.out::println);
     }
 
 }

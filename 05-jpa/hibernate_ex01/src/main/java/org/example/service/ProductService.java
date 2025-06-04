@@ -66,11 +66,10 @@ public class ProductService {
 
     public List<ProductComment> getProductComments(int id) { return productDAO.getProductComments(id); }
 
-    public ProductPicture addProductPicture(int idProduct, String url){
+    public ProductPicture addProductPicture(Product product, String url){
         try{
-            ProductPicture productPicture = ProductPicture.builder().path(url).build();
-            productPictureDAO.save(productPicture);
-            productDAO.addProductPicture(idProduct, productPicture);
+            ProductPicture productPicture = ProductPicture.builder().path(url).product(product).build();
+           productPictureDAO.save(productPicture);
             return productPicture;
         } catch (EntityNotFoundException e){
             System.out.println("Ce produit n'existe pas");
@@ -78,11 +77,10 @@ public class ProductService {
         }
     }
 
-    public ProductComment addProductComment(int idProduct, String content, Date publishedDate, float rating){
+    public ProductComment addProductComment(Product product, String content, Date publishedDate, float rating){
         try{
-            ProductComment productComment = ProductComment.builder().content(content).publishedDate(publishedDate).rating(rating).build();
+            ProductComment productComment = ProductComment.builder().content(content).publishedDate(publishedDate).rating(rating).product(product).build();
             productCommentDAO.save(productComment);
-            productDAO.addProductComment(idProduct, productComment);
             return productComment;
         } catch (EntityNotFoundException e){
             System.out.println("Ce produit n'existe pas");
@@ -90,20 +88,17 @@ public class ProductService {
         }
     }
 
-    public void deleteProductPicture(int idProduct, int idPicture){
+    public void deleteProductPicture(int idPicture){
         try{
-            ProductPicture productPicture = productPictureDAO.get(idPicture);
-            productDAO.removeProductPicture(idProduct, productPicture);
             productPictureDAO.delete(idPicture);
         } catch (EntityNotFoundException e){
             System.out.println("Ce produit n'existe pas");
         }
     }
 
-    public void deleteProductComment(int idProduct, int idComment){
+    public void deleteProductComment(int idComment){
         try{
            ProductComment productComment = productCommentDAO.get(idComment);
-            productDAO.removeProductComment(idProduct, productComment);
             productCommentDAO.delete(idComment);
         } catch (EntityNotFoundException e){
             System.out.println("Ce produit n'existe pas");
