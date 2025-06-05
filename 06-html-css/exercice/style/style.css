@@ -124,7 +124,7 @@ html{
     }
     .cols .block{
         width: calc(50% - 2px);
-        border: 1px solid #fff;
+        border: 1px solid lightgoldenrodyellow;
         height: 150px;
     }
     .cols #violet{
