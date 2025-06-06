@@ -1,4 +1,4 @@
 package org.example.util;
 
-public enum ClotheType {
+public enum SaleStatus {
 }
