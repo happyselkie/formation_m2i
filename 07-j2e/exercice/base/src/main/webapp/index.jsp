@@ -16,6 +16,7 @@
         <li><a href="html-servlet">2. HTML Servlet</a></li>
         <li><a href="jsp-servlet">3. JSP Servlet</a></li>
     </ul>
+    <a href="servlet-essai">Here comes the try !</a>
 </main>
 
 </body>
