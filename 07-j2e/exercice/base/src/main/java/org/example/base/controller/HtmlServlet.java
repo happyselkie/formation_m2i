@@ -1,4 +1,4 @@
-package org.example.base;
+package org.example.base.controller;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,7 +21,7 @@ public class HtmlServlet extends HttpServlet {
         response.setContentType("text/html");
 
         PrintWriter out = response.getWriter();
-        out.println("<h1>"+texte+"</h1>");
+        out.println("<html><body><main><h1>"+texte+"</h1></main></body></html>");
     }
 
     public void destroy() {
