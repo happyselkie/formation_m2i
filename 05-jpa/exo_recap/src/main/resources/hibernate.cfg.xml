@@ -5,7 +5,11 @@
 <hibernate-configuration>
     <session-factory>
         <mapping class="org.example.entity.Product" />
-        <mapping class="org.example.entity.ProductPicture" />
-        <mapping class="org.example.entity.ProductComment" />
+        <mapping class="org.example.entity.ProductFood" />
+        <mapping class="org.example.entity.ProductElectronic" />
+        <mapping class="org.example.entity.ProductClothe" />
+        <mapping class="org.example.entity.Sale" />
+        <mapping class="org.example.entity.SaleLine" />
+        <mapping class="org.example.entity.Customer" />
     </session-factory>
 </hibernate-configuration>

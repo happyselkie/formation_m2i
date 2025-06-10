@@ -10,7 +10,7 @@ public class SessionFactorySingleton {
     private static StandardServiceRegistry registry;
     private static SessionFactory sessionFactory;
 
-    private SessionFactorySingleton (){
+    private SessionFactorySingleton(){
         registry = new StandardServiceRegistryBuilder().configure().build();
         sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     }

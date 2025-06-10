@@ -17,4 +17,15 @@ public class ProductElectronic extends Product{
 
     private int autonomy;
 
+    @Override
+    public String toString() {
+        return "---- Électronique "+name+"(id:"+idProduct+") ----\n"+
+                "Référence : " + ref + "\n"+
+                "Autonomie : " + autonomy + "\n"+
+                "Description :" + description + "\n"+
+                "Prix :" + price + "\n"+
+                "Stock : " + stock + "\n"+
+                "Date de restock : " + restockDate + "\n";
+    }
+
 }

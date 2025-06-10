@@ -3,17 +3,14 @@ package org.example.repository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import javax.persistence.criteria.Predicate;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.zip.CheckedOutputStream;
 
 public abstract class BaseDAO<T> {
     protected SessionFactory sessionFactory;
     protected Class<T> type;
     protected Session session;
 
-    public BaseDAO(SessionFactory sessionFactory,Class<T> type) {
+    public BaseDAO(SessionFactory sessionFactory, Class<T> type) {
         this.sessionFactory = sessionFactory;
         this.type = type;
     }

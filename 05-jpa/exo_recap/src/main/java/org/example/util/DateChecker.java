@@ -28,7 +28,15 @@ public class DateChecker {
 
     public Date dateToSqlDate(String date) {
         java.util.Date dateToCheck = checkDate(date);
-        return new java.sql.Date(dateToCheck.getTime());
+        return new Date(dateToCheck.getTime());
+    }
+
+    public Date nowToSqlDate() {
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedString = localDate.format(formatter);
+        java.util.Date dateToCheck = checkDate(formattedString);
+        return new Date(dateToCheck.getTime());
     }
 
     public LocalDate checkLocalDate(String date) {

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 
@@ -17,5 +17,16 @@ import java.util.Date;
 public class ProductFood extends Product{
 
     Date expirationDate;
+
+    @Override
+    public String toString() {
+        return "---- Aliment "+name+"(id:"+idProduct+") ----\n"+
+                "Référence : " + ref + "\n"+
+                "Date d'expiration : " + expirationDate + "\n"+
+                "Description :" + description + "\n"+
+                "Prix :" + price + "\n"+
+                "Stock : " + stock + "\n"+
+                "Date de restock : " + restockDate + "\n";
+    }
 
 }
