@@ -6,6 +6,7 @@
     <%@include file="WEB-INF/style.jsp" %>
 </head>
 <body>
+
 <main>
     <h1>Welcome to inspirational music
     </h1>
@@ -16,5 +17,6 @@
         <li><a href="queen">Surprise</a></li>
     </ul>
 </main>
+
 </body>
 </html>
