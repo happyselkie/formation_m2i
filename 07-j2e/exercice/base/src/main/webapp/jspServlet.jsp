@@ -9,8 +9,12 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-<h2>Never gonna run around and desert you</h2>
+<main class="servlet">
+    <h2>Never gonna run around and desert you</h2>
+</main>
+
 </body>
 </html>
