@@ -14,8 +14,6 @@ public class JspServlet extends HttpServlet {
     public void init() {}
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-
         getServletContext().getRequestDispatcher("/jspServlet.jsp").forward(request, response);
     }
 
