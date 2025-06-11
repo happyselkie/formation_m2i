@@ -49,28 +49,31 @@
     <p>There is no cat :'(</p>
 
     <% } %>
-
   </article>
 
   <article class="tab">
     <h2>Add a new cat ! =D</h2>
     <form action="cats" method="post">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
-      </div>
-      <div class="form-group">
-        <label for="race">Race</label>
-        <input type="text" class="form-control" id="race" name="race" placeholder="Enter Race">
-      </div>
-      <div class="form-group">
-        <label for="favMeal">Favorite Meal</label>
-        <input type="text" class="form-control" id="favMeal" name="favMeal" placeholder="Enter Favorite Meal">
-      </div>
-      <div class="form-group">
-        <label for="favMeal">Date Of Birth</label>
-        <input type="datetime-local" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="Enter Date Of Birth">
-      </div>
+      <fieldset>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+          <label for="race">Race</label>
+          <input type="text" class="form-control" id="race" name="race" placeholder="Enter Race">
+        </div>
+        <div class="form-group">
+          <label for="favMeal">Favorite Meal</label>
+          <input type="text" class="form-control" id="favMeal" name="favMeal" placeholder="Enter Favorite Meal">
+        </div>
+        <div class="form-group">
+          <label for="favMeal">Date Of Birth</label>
+          <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="Enter Date Of Birth">
+        </div>
+      </fieldset>
+
+      <button>Cat ! </button>
     </form>
   </article>
 

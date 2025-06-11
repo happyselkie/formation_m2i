@@ -9,6 +9,6 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="cats">CATS !!!</a>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class CatServlet  extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("cats", cats);
-        getServletContext().getRequestDispatcher("/cats.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/catPage.jsp").forward(req, resp);
     }
 
     @Override
