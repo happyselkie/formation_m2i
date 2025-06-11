@@ -92,31 +92,41 @@ sup, sub {text-transform: none;}
 
 main{
     width: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 15px;
+    padding: 50px 15px;
 }
-article.tab{
+main > h1, article.tab{
     width: 800px;
     margin: 0 auto;
     max-width: 100%;
+}
+main > h1{
+    display: block;
+    margin-bottom: 25px;
+    text-align: left;
+}
+article.tab{
     display: flex;
     flex-flow: row wrap;
-    border-top: 1px solid #706a6a;
+    border-right: 30px;
 }
 article.tab div{
     width: calc(100%/3);
     border-bottom: 1px solid #706a6a;
     border-left: 1px solid #706a6a;
     padding: 15px;
+    background-color: #fff0d0;
 }
-main article > div:nth-child(3n+3){
+article.tab > div:nth-child(3n+3){
     border-right: 1px solid #706a6a;
 }
-main article > div:nth-child(1), main article > div:nth-child(2), main article > div:nth-child(3){
+article.tab > div:nth-child(1), main article > div:nth-child(2), main article > div:nth-child(3){
     font-weight: 800;
+    background-color: #ffd6b9;
+    border-top: 1px solid #706a6a;
 }
-
+article.tab > div:nth-child(1){
+    border-top-left-radius: 30px;
+}
+article.tab > div:nth-child(3){
+    border-top-right-radius: 30px;
+}
