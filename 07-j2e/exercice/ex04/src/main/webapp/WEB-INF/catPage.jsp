@@ -38,7 +38,8 @@
         <td><%= c.getName() %></td>
         <td><%= c.getRace() %></td>
         <td><%= c.getFavoriteMeal() %></td>
-        <td><%= c.getDateOfBirth() %></td>
+        <%--<td><%= c.getDateOfBirth() %></td>--%>
+        <td><%= c.getDateOfBirth().getDayOfMonth()+"/"+c.getDateOfBirth().getMonthValue()+"/"+c.getDateOfBirth().getYear() %></td>
       </tr>
       <% } %>
       </tbody>
