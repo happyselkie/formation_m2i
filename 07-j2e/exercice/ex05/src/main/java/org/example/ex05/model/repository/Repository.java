@@ -5,12 +5,12 @@ import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public abstract class BaseDAO<T> {
+public abstract class Repository<T> {
     protected SessionFactory sessionFactory;
     protected Class<T> type;
     protected Session session;
 
-    public BaseDAO(SessionFactory sessionFactory, Class<T> type) {
+    public Repository(SessionFactory sessionFactory, Class<T> type) {
         this.sessionFactory = sessionFactory;
         this.type = type;
     }

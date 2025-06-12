@@ -79,7 +79,7 @@ public class DogServlet extends HttpServlet {
         String breed = req.getParameter("breed");
         LocalDate dob = LocalDate.parse(req.getParameter("birthday"));
 
-        int edit = Integer.parseInt(req.getParameter("id"));
+        int edit = Integer.parseInt(req.getParameter("edit"));
 
         Dog dog;
 
@@ -93,7 +93,7 @@ public class DogServlet extends HttpServlet {
             dog = dogService.save(name, breed, dob);
             dogs.add(dog);
         }
-
+        dogs = dogService.getAll();
 
         resp.sendRedirect("edit?id=" + dog.getId());
     }

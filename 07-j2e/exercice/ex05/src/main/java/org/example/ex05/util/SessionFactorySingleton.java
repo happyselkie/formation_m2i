@@ -1,4 +1,4 @@
-package org.example.ex05.model.util;
+package org.example.ex05.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
