@@ -23,6 +23,7 @@
         <% if(!edit){ %> <h1>Add a good boi !</h1> <% } else { %> <h1>Edit <%=dog.getName() %> !</h1> <% } %>
         <article class="form">
             <form action="dogs" method="post">
+                <input type="hidden" name="edit" value="<% if(edit){ %><%=dog.getId() %><% } else { %>0<% }%>">
                 <fieldset>
                     <div class="form-group">
                         <label for="name">Name</label>

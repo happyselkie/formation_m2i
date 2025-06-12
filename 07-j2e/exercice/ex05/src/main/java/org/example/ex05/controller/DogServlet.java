@@ -79,8 +79,21 @@ public class DogServlet extends HttpServlet {
         String breed = req.getParameter("breed");
         LocalDate dob = LocalDate.parse(req.getParameter("birthday"));
 
-        Dog dog = dogService.save(name, breed, dob);
-        dogs.add(dog);
+        int edit = Integer.parseInt(req.getParameter("id"));
+
+        Dog dog;
+
+        if(edit > 0){
+            dog = dogService.getById(edit);
+            dog.setName(name);
+            dog.setBreed(breed);
+            dog.setBirthday(dob);
+            dogService.update(dog);
+        } else {
+            dog = dogService.save(name, breed, dob);
+            dogs.add(dog);
+        }
+
 
         resp.sendRedirect("edit?id=" + dog.getId());
     }
