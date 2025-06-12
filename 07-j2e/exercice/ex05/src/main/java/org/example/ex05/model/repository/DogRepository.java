@@ -6,7 +6,7 @@ import org.example.ex05.util.SessionFactorySingleton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DogRepository extends Repository<Dog>{
+public class DogRepository extends Repository<Dog>{ 
 
     public DogRepository() {
         super(SessionFactorySingleton.getSessionFactory(), Dog.class);

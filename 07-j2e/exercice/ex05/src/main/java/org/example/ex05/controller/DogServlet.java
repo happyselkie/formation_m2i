@@ -28,41 +28,23 @@ public class DogServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pathInfo = req.getPathInfo();
         System.out.println(pathInfo);
-        int id;
-        boolean edit = false;
         String error = "";
 
         switch (pathInfo) {
             case "/list":
-                req.setAttribute("dogs", dogs);
-                req.setAttribute("error", error);
-                req.getRequestDispatcher("/WEB-INF/views/list.jsp").forward(req, resp);
+                dogList(req, resp, dogs, error);
                 break;
             case "/add":
-                Dog dog = new Dog();
-                req.setAttribute("edit", edit);
-                req.setAttribute("dog", dog);
-                req.getRequestDispatcher("/WEB-INF/views/form.jsp").forward(req, resp);
+                Dog newDog = new Dog();
+                dogDetail(req, resp, newDog, false);
                 break;
             case "/delete":
-                id = Integer.parseInt(req.getParameter("id"));
-                if (id > 0) {
-                    dogService.delete(id);
-                    dogs = dogService.getAll();
-                    req.setAttribute("dogs", dogs);
-                    req.getRequestDispatcher("/WEB-INF/views/list.jsp").forward(req, resp);
-                } else {
-                    error = "No dog selected";
-                    req.setAttribute("error", error);
-                    req.getRequestDispatcher("/WEB-INF/views/list.jsp").forward(req, resp);
-                }
+                dogDelete(req, resp);
                 break;
             case "/edit":
-                id = Integer.parseInt(req.getParameter("id"));
+                int id = Integer.parseInt(req.getParameter("id"));
                 if (id > 0) {
-                    edit = true;
-                    req.setAttribute("dog", dogService.getById(id));
-                    req.setAttribute("edit", edit);
+                    dogDetail(req, resp, dogService.getById(id), true);
                     req.getRequestDispatcher("/WEB-INF/views/form.jsp").forward(req, resp);
                 } else {
                     req.setAttribute("error", "L'identifiant n'existe pas");
@@ -97,4 +79,33 @@ public class DogServlet extends HttpServlet {
 
         resp.sendRedirect("edit?id=" + dog.getId());
     }
+
+
+    protected void dogList(HttpServletRequest req, HttpServletResponse resp, List<Dog> dogs, String error) throws ServletException, IOException {
+        req.setAttribute("dogs", dogs);
+        req.setAttribute("error", error);
+        req.getRequestDispatcher("/WEB-INF/views/list.jsp").forward(req, resp);
+    }
+
+
+    protected void dogDetail(HttpServletRequest req, HttpServletResponse resp, Dog dog, boolean edit) throws ServletException, IOException {
+        req.setAttribute("edit", edit);
+        req.setAttribute("dog", dog);
+        req.getRequestDispatcher("/WEB-INF/views/form.jsp").forward(req, resp);
+    }
+
+    protected void dogDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        if (id > 0) {
+            dogService.delete(id);
+            dogs = dogService.getAll();
+            req.setAttribute("dogs", dogs);
+            req.getRequestDispatcher("/WEB-INF/views/list.jsp").forward(req, resp);
+        } else {
+            String error = "No dog selected";
+            req.setAttribute("error", error);
+            req.getRequestDispatcher("/WEB-INF/views/list.jsp").forward(req, resp);
+        }
+    }
+
 }
