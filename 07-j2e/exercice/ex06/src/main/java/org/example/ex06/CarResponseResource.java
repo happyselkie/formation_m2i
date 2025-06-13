@@ -22,8 +22,12 @@ public class CarResponseResource {
     }
 
     @GET
-    public List<Car> getCars() {
-        return carService.getCars();
+    public Response getCars() {
+        if(carService.getCars().size() > 0) {
+            return Response.ok(carService.getCars()).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 
     @GET
@@ -63,7 +67,7 @@ public class CarResponseResource {
         if(!carService.delete(id)){
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
-            return Response.ok().build();
+            return Response.status(Response.Status.NO_CONTENT).build();
         }
     }
 
