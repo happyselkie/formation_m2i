@@ -1,17 +1,24 @@
 package org.example.ex06.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Car {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String brand;
     private int year;
     private String color;
 
     public Car() {}
 
-    public Car(int id, String brand, int year, String color) {
-        this.id = id;
+    public Car(String brand, int year, String color) {
         this.brand = brand;
         this.year = year;
         this.color = color;

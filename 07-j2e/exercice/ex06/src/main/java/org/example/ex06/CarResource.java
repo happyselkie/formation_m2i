@@ -61,7 +61,7 @@ public class CarResource {
 
     @DELETE
     @Path("/delete/{id}")
-    public int deleteCar(@PathParam("id") int id) {
+    public boolean deleteCar(@PathParam("id") int id) {
         return carService.delete(id);
     }
 }
