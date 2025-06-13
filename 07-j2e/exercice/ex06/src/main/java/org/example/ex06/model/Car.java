@@ -1,17 +1,21 @@
 package org.example.ex06.model;
 
-import java.time.LocalDate;
 
 public class Car {
 
     private int id;
     private String brand;
-    private LocalDate date;
+    private int year;
     private String color;
 
     public Car() {}
 
-    public Car(int id, String brand, LocalDate date, String color) {}
+    public Car(int id, String brand, int year, String color) {
+        this.id = id;
+        this.brand = brand;
+        this.year = year;
+        this.color = color;
+    }
 
     public int getId() {
         return id;
@@ -29,12 +33,12 @@ public class Car {
         this.brand = brand;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public int getYear() {
+        return year;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public String getColor() {
@@ -43,5 +47,15 @@ public class Car {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", year=" + year +
+                ", color='" + color + '\'' +
+                '}';
     }
 }

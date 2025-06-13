@@ -35,29 +35,28 @@ public class CarResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Car createCar(Car car) {
-        return carService.save(car.getBrand(),car.getDate().toString(), car.getColor());
+        return carService.save(car.getBrand(),car.getYear(), car.getColor());
     }
 
     @POST
     @Path("/create-with-service")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     public Car createCarWithService(){
-        return carService.save("Peugeot", "2024-04-24", "blue");
+        return carService.save("Peugeot", 2024, "blue");
     }
 
     @POST
     @Path("/create-with-params")
     @Produces(MediaType.APPLICATION_JSON)
-    public Car createCarWithParams(@QueryParam("brand") String brand, @QueryParam("date") String date, @QueryParam("color") String color) {
-        return carService.save(brand, date, color);
+    public Car createCarWithParams(@QueryParam("brand") String brand, @QueryParam("year") int year, @QueryParam("color") String color) {
+        return carService.save(brand, year, color);
     }
 
     @PUT
     @Path("/update/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Car updateCarWithParams(@PathParam("id") int id, @QueryParam("brand") String brand, @QueryParam("date") String date, @QueryParam("color") String color) {
-        return carService.update(id, brand, date, color);
+    public Car updateCarWithParams(@PathParam("id") int id, @QueryParam("brand") String brand, @QueryParam("year") int year, @QueryParam("color") String color) {
+        return carService.update(id, brand, year, color);
     }
 
     @DELETE

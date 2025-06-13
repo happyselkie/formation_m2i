@@ -3,7 +3,6 @@ package org.example.ex06.service;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.example.ex06.model.Car;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,17 +39,18 @@ public class CarService {
         return carGet;
     }
 
-    public Car save(String brand, String date, String color) {
-        Car car = new Car(idAuto++, brand, LocalDate.parse(date), color);
+    public Car save(String brand,int year, String color) {
+        Car car = new Car(idAuto++, brand, year, color);
         cars.add(car);
+        System.out.println(car);
 
         return car;
     }
 
-    public Car update(int id, String brand, String date, String color) {
+    public Car update(int id, String brand, int year, String color) {
         Car car = getCar(id);
         car.setBrand(brand);
-        car.setDate(LocalDate.parse(date));
+        car.setYear(year);
         car.setColor(color);
 
         return car;
