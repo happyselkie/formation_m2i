@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+</head>
+<body>
+
+<main>
+    <h1>This is my Todo List : </h1>
+    <hr>
+    <p th:if="${todos.isEmpty()}">Empty list</p>
+    <ul th:unless="${todos.isEmpty()}">
+        <li th:each="t : ${todos}">
+             - Name : <span th:text="${t.getName()}"></span>
+             - Description : <span th:text="${t.getDescription()}"></span>
+             - Status :  <span th:if="${t.isDone()}">Done</span><span th:unless="${t.isDone()}">In progress</span>
+        </li>
+    </ul>
+
+
+    <hr>
+
+    <h2>add a new todo</h2>
+
+</main>
+
+</body>
+</html>
