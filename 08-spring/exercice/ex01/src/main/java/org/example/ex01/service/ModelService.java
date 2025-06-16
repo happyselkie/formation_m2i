@@ -6,6 +6,8 @@ public interface ModelService<T> {
 
     List<T> findAll();
 
+    T findById(int id);
+
     T find(T model);
 
     T save(T model);
