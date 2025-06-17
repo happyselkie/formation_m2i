@@ -58,7 +58,10 @@ public class ProductController {
         if(price > 0){
             if(!products.isEmpty()){
                 List<Product> productsByPrice = productService.findByUnderAmount(price);
-                products.addAll(productsByPrice);
+                for(Product product : productsByPrice){
+                    products.add(product);
+                }
+               /* products.addAll(productsByPrice);*/
             }
             else products = productService.findByUnderAmount(price);
         }
