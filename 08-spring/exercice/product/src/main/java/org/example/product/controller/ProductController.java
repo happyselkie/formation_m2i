@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,27 +47,21 @@ public class ProductController {
 
     @GetMapping("/search")
     public String searchProducts(@RequestParam(value = "price",required = false) double price, @RequestParam(value = "category", required = false) Category category, Model model){
-        List<Product> products = new ArrayList<>();
+        List<Product> allProducts = productService.findAll();
+        List<Product> products;
         String errorSearch = "";
 
-        if(category != null){
-            products = productService.findByCategory(category);
-        }
 
-        if(price > 0){
-            if(!products.isEmpty()){
-                List<Product> productsByPrice = productService.findByUnderAmount(price);
-                for(Product product : productsByPrice){
-                    products.add(product);
-                }
-               /* products.addAll(productsByPrice);*/
+        if (category != null && price > 0){
+            List<Product> productsByCategory = productService.findByCategory(allProducts, category);
+            products = productService.findByUnderAmount(productsByCategory, price);
+        } else {
+            if(price > 0) products = productService.findByUnderAmount(allProducts, price);
+            else if (category != null) products = productService.findByCategory(allProducts, category);
+            else {
+                errorSearch = "Products not found";
+                products = productService.findAll();
             }
-            else products = productService.findByUnderAmount(price);
-        }
-
-        if (products.isEmpty()){
-            errorSearch = "Product not found";
-            products = productService.findAll();
         }
 
         model.addAttribute("products",products);

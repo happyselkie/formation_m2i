@@ -15,7 +15,7 @@ html{
 body {
     font-family:              Verdana, Geneva, Tahoma, sans-serif;
     font-size:                16px;
-    background-color: #fff;
+    background-color: 	#e5e5e5;
     width:                    100%;
     -webkit-font-smoothing:   antialiased;
     -webkit-text-size-adjust: 100%;
@@ -100,5 +100,15 @@ main{
     padding: 50px 30px;
 }
 
+main h1{
+    padding: 25px 0;
+    border:  solid 	#5f9ea0;
+    border-width: 3px 0 3px;
+    color: #778899;
+}
 
+a.link{
+    color: #daa520;
+    text-decoration: underline;
+}
 

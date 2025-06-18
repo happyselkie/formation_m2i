@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Product</title>
     <th:block th:fragment="cssImports">
-        <link rel="stylesheet" type="text/css" th:href="@{style/style.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}">
     </th:block>
 </head>
 <body>
@@ -16,14 +16,11 @@
         <li th:each="c : ${categories}">
             <a th:href="@{/search(category=${c}, price=0.0)}">Search product <span th:text="${c.toString()}"></span></a>
         </li>
-        <li>
-            <a th:href="@{/search(category=null, price=500.0)}">Search product under 500€</a>
-        </li>
     </ul>
 
 
     <h2>Searching a product : </h2>
-    <form action="search" method="get">
+    <form th:action="@{/search}" th:method="get">
         <label for="category"> Category :
             <select name="category" id="category">
                 <option th:each="c : ${categories}" th:value="${c}"><span th:text="${c.toString()}"></span></option>

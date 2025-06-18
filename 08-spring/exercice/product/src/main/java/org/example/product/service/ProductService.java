@@ -72,12 +72,12 @@ public class ProductService implements ModelService<Product> {
     @Override
     public Product findById(UUID id) { return this.products.get(id); }
 
-    public List<Product> findByCategory(Category category){
-        return this.products.values().stream().filter(c -> c.getCategory().equals(category)).toList();
+    public List<Product> findByCategory(List<Product> productList, Category category){
+        return productList.stream().filter(c -> c.getCategory().equals(category)).toList();
     }
 
-    public List<Product> findByUnderAmount(double amount){
-        return this.products.values().stream().filter(c -> c.getPrice() <= amount).toList();
+    public List<Product> findByUnderAmount(List<Product> productList, double amount){
+        return productList.stream().filter(c -> c.getPrice() <= amount).toList();
     }
 
     @Override
